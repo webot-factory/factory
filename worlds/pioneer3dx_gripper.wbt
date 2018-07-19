@@ -9,8 +9,8 @@ WorldInfo {
 }
 Viewpoint {
   fieldOfView 0.660595
-  orientation 0.026400015493119985 -0.9764220341548927 -0.21424997175912247 4.121269135622924
-  position 0.14132694017241795 0.9731352756664808 -1.8216491319052697
+  orientation -0.015887800832607626 -0.9862003465846992 -0.16479215448838036 3.876170207224016
+  position -0.5769473664519098 0.5399252780435791 -1.953808087725909
 }
 TexturedBackground {
 }
@@ -143,32 +143,46 @@ DEF PIONEER_3DX Pioneer3dx {
   rotation 0 -1 0 -1.5707996938995747
   controller "pioneer3dx_gripper"
   extensionSlot [
+    Solid {
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0 1 1
+            }
+          }
+          geometry Box {
+            size 0.001 1 0.001
+          }
+        }
+      ]
+    }
     Camera {
       translation 0 0.1 -0.18
     }
     Camera {
-      translation 0 0 -0.1
+      translation 0 0 -0.0975
       rotation 1 0 0 -1.5707996938995747
       name "camera_front"
-      fieldOfView 0.674
+      fieldOfView 0.65
     }
     Camera {
-      translation -0.1 0 0
+      translation -0.1 0 0.0025
       rotation 1 0 0 -1.5707996938995747
       name "camera_left"
-      fieldOfView 0.674
+      fieldOfView 0.65
     }
     Camera {
-      translation 0.1 0 0
+      translation 0.1 0 0.0025
       rotation 1 0 0 -1.5707996938995747
       name "camera_right"
-      fieldOfView 0.674
+      fieldOfView 0.65
     }
     Camera {
-      translation 0 0 0.1
+      translation 0 0 0.1025
       rotation 1 0 0 -1.5707996938995747
       name "camera_back"
-      fieldOfView 0.674
+      fieldOfView 0.65
     }
     DEF GRIPPER_BASE Pioneer3Gripper {
       translation 0 0.026 -0.135

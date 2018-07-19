@@ -13,6 +13,9 @@
 
 #define GRIPPER_MOTOR_MAX_SPEED 0.1
 #define MAIN_COLOR 1044480
+#define SPEED 1
+#define LEFT 0
+#define RIGHT 1
 
 static WbDeviceTag wheel_motors[3];
 static WbDeviceTag gripper_motors[3];
@@ -20,8 +23,6 @@ static WbDeviceTag ds, camera, camera_left, camera_right, camera_front, camera_b
 static int time_step = 0;
 
 static char *colors[5] = {"red", "green", "blue", "yellow", "none"};
-
-static int is_going_back = 0;
 
 static void initialize()
 {
@@ -70,8 +71,35 @@ static char *getColor(WbDeviceTag device){
         green += wb_camera_image_get_green(image, width, i, u);
       }
   }
+  //printf("%d,%d,%d\n", red, green, blue);
+  if (red == MAIN_COLOR && green == MAIN_COLOR)
+    return colors[3];
+  else if (red == MAIN_COLOR)
+    return colors[0];
+  else if (green == MAIN_COLOR)
+    return colors[1];
+  else if (blue == MAIN_COLOR)
+    return colors[2];
+  else
+    return colors[4];
+}
+
+static char *getColora(WbDeviceTag device){
+  int red = 0, green = 0, blue = 0;
+  int width = wb_camera_get_width(device);
+  int height = wb_camera_get_height(device);
+  const unsigned char *image = wb_camera_get_image(device);    
+  for (int i = 0; i < width; i++) {
+      for (int u = 0; u < height; u++) {
+        red += wb_camera_image_get_red(image, width, i, u);
+        blue += wb_camera_image_get_blue(image, width, i, u);
+        green += wb_camera_image_get_green(image, width, i, u);
+      }
+  }
   printf("%d,%d,%d\n", red, green, blue);
-  if (red == MAIN_COLOR && green == 0 &&  blue == 0)
+  if (red == MAIN_COLOR && green == MAIN_COLOR)
+    return colors[3];
+  else if (red == MAIN_COLOR)
     return colors[0];
   else if (green == MAIN_COLOR)
     return colors[1];
@@ -91,23 +119,32 @@ void step(double seconds){
 }
 
 void forward() {
-  wb_motor_set_velocity(wheel_motors[0], 1.75);
-  wb_motor_set_velocity(wheel_motors[1], 1.75);
+  wb_motor_set_velocity(wheel_motors[0], SPEED);
+  wb_motor_set_velocity(wheel_motors[1], SPEED);
 }
 
 void reverse() {
-  wb_motor_set_velocity(wheel_motors[0], -1.75);
-  wb_motor_set_velocity(wheel_motors[1], -1.75);
+  wb_motor_set_velocity(wheel_motors[0], -SPEED);
+  wb_motor_set_velocity(wheel_motors[1], -SPEED);
 }
 
-void turnLeft() {
-  wb_motor_set_velocity(wheel_motors[0], -2.0);
-  wb_motor_set_velocity(wheel_motors[1], 2.0);
-}
-
-void turnRight() {
-  wb_motor_set_velocity(wheel_motors[0], 2.0);
-  wb_motor_set_velocity(wheel_motors[1], -2.0);
+void turn(int arg) {
+ double l_speed = 0, r_speed = 0;
+  switch (arg) {
+    case LEFT:
+      l_speed = -2 * SPEED;
+      r_speed = 2 * SPEED;
+      break;
+    case RIGHT:
+      l_speed = 2 * SPEED;
+      r_speed = -2 * SPEED;
+      break;
+  }
+  wb_motor_set_velocity(wheel_motors[0], l_speed);
+  wb_motor_set_velocity(wheel_motors[1], r_speed);
+  step(1.355);
+  forward();
+  step(0.5);
 }
 
 void stop() {
@@ -143,31 +180,42 @@ void release() {
 
 int main() {
   char *tmp_color = colors[4];
+  int is_going_back = 0;
+  
   initialize();
   step(2.0);
+  forward();
   while (wb_robot_step(time_step) != 1) {
-  getColor(camera_right);
+  //getColor(camera);
     if (tmp_color == colors[4]) {
-      forward();
       if (wb_distance_sensor_get_value(ds) < 400) {
-      stop();
-      pick();
-      tmp_color = getColor(camera);
+        stop();
+        pick();
+        tmp_color = getColor(camera);
+        printf("%s\n",tmp_color);
       }
     } else {
-      if (getColor(camera_left) == tmp_color) {
-        turnLeft();
+      if (is_going_back == 1 && wb_distance_sensor_get_value(ds) < 400) {
+        is_going_back = 0;
+        stop();
+        tmp_color = getColor(camera);
+        pick();
+      }
+      if (getColor(camera_front) == colors[3]) {
+        stop();
+        is_going_back = 1;
+        release();
+        step(1.0);
+        
+      } else if (getColor(camera_left) == tmp_color) {
+        turn(LEFT);
       } else if (getColor(camera_right) == tmp_color) {
-      stop();
-        turnRight();
+        stop();
+        turn(RIGHT);
       }
     }
   }
   
-  pick();
-  step(3.0);
-  release();
-  step(3.0);
   
 
   
