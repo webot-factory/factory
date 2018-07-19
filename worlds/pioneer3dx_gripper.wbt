@@ -9,8 +9,8 @@ WorldInfo {
 }
 Viewpoint {
   fieldOfView 0.660595
-  orientation -0.015887800832607626 -0.9862003465846992 -0.16479215448838036 3.876170207224016
-  position -0.5769473664519098 0.5399252780435791 -1.953808087725909
+  orientation -0.8230491305311893 0.4980544070448083 0.2730053778867695 0.8254898541991589
+  position 5.0303785079311325 11.184399065892308 10.380576899262941
 }
 TexturedBackground {
 }
@@ -23,7 +23,22 @@ RectangleArena {
     "textures/floor.png"
   ]
   floorTileSize 8 8
-  wallHeight 0.4
+  wallHeight 2
+  wallTextureUrl [
+    "textures/gray_brick_wall.jpg"
+  ]
+}
+Door {
+  translation -4.0399996670944045 0 -3.700000340097793
+  rotation 0 -1 0 4.712389070359173
+  name "door(1)"
+  size 0.5 0.8 0.2
+  doorTextureUrl [
+    "textures/metal.jpg"
+  ]
+  frameTextureUrl [
+    "textures/light_asphalt.jpg"
+  ]
 }
 Ball {
   translation -5.674839984294962e-9 0.08020683599996667 -1.6753928931375287e-9
@@ -31,7 +46,7 @@ Ball {
   color 0.0784314 0.137255 1
 }
 DEF RED_TEE Solid {
-  translation -0.0376035 0 -0.618808
+  translation -0.0376035 0 -1.2688080000000006
   children [
     Group {
       children [
@@ -385,4 +400,426 @@ PointLight {
   attenuation 0.1 0 0
   location 0 5 0
   radius 10000
+}
+Transform {
+  translation 0 -0.01 0
+  rotation 0 1 0 1.5707963220000003
+  scale 0.3 0.30000000000000004 0.30000000000000004
+  children [
+    WoodenPalletStack {
+      translation 12.549999658900951 0 12.730000336275955
+      rotation 0 1 0 1.5707963
+      palletNumber 20
+    }
+    DEF CCTV_STAND Solid {
+      translation 13.199999999999987 3.959999999999998 13.169999999999984
+      children [
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/metal.jpg"
+              ]
+            }
+          }
+          geometry Cylinder {
+            radius 0.05
+          }
+        }
+      ]
+      name "solid(3)"
+    }
+    Solid {
+      translation 12.689999999999959 2.9100000000000064 12.039999999999985
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+            }
+            texture ImageTexture {
+              url [
+                "textures/steel_floor.jpg"
+              ]
+            }
+            textureTransform TextureTransform {
+              scale 2 2
+            }
+          }
+          geometry Box {
+            size 1.5 0.12 2.6
+          }
+        }
+      ]
+      name "solid(2)"
+    }
+    StraightStairs {
+      translation 12.61997345280398 0 7.870042569803618
+      rotation 0 1 0 -1.5707997
+      name "straight stairs(1)"
+      stepSize 0.3 0.01 1.34
+      stepRise 0.297
+      nSteps 10
+      stepAppearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "textures/steel_floor.jpg"
+          ]
+        }
+        textureTransform TextureTransform {
+          rotation 1.5708
+          scale 3 1
+        }
+      }
+      stringerAppearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "textures/metal.jpg"
+          ]
+        }
+        textureTransform TextureTransform {
+          rotation 1.5708
+          scale 3 3
+        }
+      }
+      leftRail []
+      rightRail [
+        StraightStairsRail {
+          run 3
+          rise 2.97
+          newelHeight 0.862
+          balusterHeight 0.83
+          nBalusters 12
+          appearance Appearance {
+            material Material {
+            }
+            texture ImageTexture {
+              url [
+                "textures/metal.jpg"
+              ]
+            }
+            textureTransform TextureTransform {
+              rotation 1.5708
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+DEF Boxes Transform {
+  children [
+    WoodenBox {
+      translation 0.09899493769065332 0.09999999999999996 3.436538956902948
+      rotation 0 1 0 0.78539816
+      name "wooden box(3)"
+      size 0.2 0.2 0.2
+    }
+    WoodenBox {
+      translation -0.20233675562780343 0.09999999999999996 3.4386194662698317
+      rotation 0 1 0 1.3089969339999996
+      name "wooden box(6)"
+      size 0.2 0.2 0.2
+    }
+    WoodenBox {
+      translation -0.30845256644599484 0.09999999999999996 3.8946490545182155
+      rotation 0 1 0 1.5707963209999998
+      name "wooden box(7)"
+      size 0.2 0.2 0.2
+    }
+    WoodenBox {
+      translation -0.518452566445995 0.09999999999999996 3.8946490533012916
+      rotation 0 1 0 1.5707963209999998
+      name "wooden box(8)"
+      size 0.2 0.2 0.2
+    }
+    WoodenBox {
+      translation -0.7284525664459952 0.09999999999999996 3.8946490520843677
+      rotation 0 1 0 1.5707963209999998
+      name "wooden box(9)"
+      size 0.2 0.2 0.2
+    }
+    WoodenBox {
+      translation -0.9384525664459954 0.09999999999999996 3.8946490508674434
+      rotation 0 1 0 1.5707963209999998
+      name "wooden box(10)"
+      size 0.2 0.2 0.2
+    }
+    WoodenBox {
+      translation 0.2805391924243199 0.09999999999999996 3.294259737383696
+      rotation 0 -1 0 5.759586553359174
+      name "wooden box(5)"
+      size 0.2 0.2 0.2
+    }
+    WoodenBox {
+      translation 0.2545584290231749 0.09999999999999996 3.59210244929251
+      rotation 0 0.9999999999999999 0 0.7853981599999997
+      name "wooden box(2)"
+      size 0.2 0.2 0.2
+    }
+    WoodenBox {
+      translation 0.17677668282839515 0.3000000000000001 3.66988419495877
+      rotation 0 1 0 1.0471975469999997
+      name "wooden box(4)"
+      size 0.2 0.2 0.2
+    }
+    WoodenBox {
+      translation 0.10606600446950448 0.09999999999999996 3.7405948728371885
+      rotation 0 1 0 0.78539816
+      name "wooden box(1)"
+      size 0.2 0.2 0.2
+    }
+  ]
+}
+DEF Exit-02 Solid {
+  translation -2.9600000000000004 0 2.0100000000000002
+  children [
+    Solid {
+      translation -1.0300000000000005 0 -0.23
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0 0 0
+            }
+          }
+          geometry Box {
+            size 0.1 1 0.4
+          }
+        }
+      ]
+    }
+    Transform {
+      children [
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/light_asphalt.jpg"
+              ]
+            }
+          }
+          geometry Box {
+            size 2.3 0.9 0.05
+          }
+        }
+      ]
+    }
+    Transform {
+      translation 0 0 -0.45
+      children [
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/light_asphalt.jpg"
+              ]
+            }
+          }
+          geometry Box {
+            size 2.3 0.9 0.05
+          }
+        }
+      ]
+    }
+    Transform {
+      translation 0 0.48 -0.23
+      rotation 1 0 0 1.5707996938995747
+      children [
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/light_asphalt.jpg"
+              ]
+            }
+          }
+          geometry Box {
+            size 2.3000000000000003 0.5 0.05
+          }
+        }
+      ]
+    }
+  ]
+  name "solid(5)"
+}
+DEF Exit-03 Solid {
+  translation 2.299999994389983 0 3.180000003835891
+  rotation 0 1 0 1.5707963220000003
+  children [
+    Solid {
+      translation -0.8100000000000003 0 -0.23
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0 0 0
+            }
+          }
+          geometry Box {
+            size 0.1 1 0.4
+          }
+        }
+      ]
+    }
+    Transform {
+      children [
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/light_asphalt.jpg"
+              ]
+            }
+          }
+          geometry Box {
+            size 2.3 0.9 0.05
+          }
+        }
+      ]
+    }
+    Transform {
+      translation 0 0 -0.45
+      children [
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/light_asphalt.jpg"
+              ]
+            }
+          }
+          geometry Box {
+            size 2.3 0.9 0.05
+          }
+        }
+      ]
+    }
+    Transform {
+      translation 0 0.48 -0.23
+      rotation 1 0 0 1.5707996938995747
+      children [
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/light_asphalt.jpg"
+              ]
+            }
+          }
+          geometry Box {
+            size 2.3000000000000003 0.5 0.05
+          }
+        }
+      ]
+    }
+  ]
+  name "solid(6)"
+}
+DEF Exit-01 Solid {
+  translation -1.459999946728688 0 -3.320000050442339
+  rotation 0 0.9999999999999999 0 4.712388966000001
+  children [
+    Solid {
+      translation -0.5 0 -0.23
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0 0 0
+            }
+          }
+          geometry Box {
+            size 0.1 1 0.4
+          }
+        }
+      ]
+    }
+    Transform {
+      children [
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/light_asphalt.jpg"
+              ]
+            }
+          }
+          geometry Box {
+            size 1.4 0.9 0.05
+          }
+        }
+      ]
+    }
+    Transform {
+      translation 0 0 -0.45
+      children [
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/light_asphalt.jpg"
+              ]
+            }
+          }
+          geometry Box {
+            size 1.4 0.9 0.05
+          }
+        }
+      ]
+    }
+    Transform {
+      translation 0 0.48 -0.23
+      rotation 1 0 0 1.5707996938995747
+      children [
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/light_asphalt.jpg"
+              ]
+            }
+          }
+          geometry Box {
+            size 1.4000000000000001 0.5 0.05
+          }
+        }
+      ]
+    }
+  ]
+  name "solid(7)"
+}
+DEF CCTV Supervisor {
+  translation 3.9270710677610063 1.4800000000000006 -3.9387867965474475
+  rotation 0 1 0 0.7853981610000004
+  children [
+    DEF cctv Camera {
+      translation -0.04000000000011338 0 -6.734209356238624e-8
+      rotation 0 1 0 1.5707996938995747
+      name "cctv"
+      fieldOfView 1.75
+      width 720
+      height 720
+      spherical TRUE
+    }
+    Solid {
+      children [
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/grid.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.1 0.03 0.05
+          }
+        }
+      ]
+    }
+  ]
 }
