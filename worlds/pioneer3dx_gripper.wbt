@@ -9,70 +9,25 @@ WorldInfo {
 }
 Viewpoint {
   fieldOfView 0.660595
-  orientation 0.01316073064269515 0.9865752771038948 0.16277597419866321 3.1554627182684065
-  position -3.371826543787199 0.8327200969905203 -2.8285413666115984
-  follow "Pioneer 3-DX"
+  orientation 0.026400015493119985 -0.9764220341548927 -0.21424997175912247 4.121269135622924
+  position 0.14132694017241795 0.9731352756664808 -1.8216491319052697
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
+  castShadows FALSE
 }
 RectangleArena {
-  floorSize 8 5.715
+  floorSize 8 8
   floorTextureUrl [
-    "textures/floor.jpg"
+    "textures/floor.png"
   ]
-  floorTileSize 8 5.715
+  floorTileSize 8 8
   wallHeight 0.4
 }
-DEF PIONEER_3DX Pioneer3dx {
-  hidden position_0_0 -7.905866348358089e-12
-  hidden position_0_1 3.496531082430672e-11
-  hidden position_0_2 2.5040669587523283e-13
-  hidden position_1_0 -0.028343255492206985
-  hidden rotation_2 -0.9999999999999999 0 0 0.0283432554922072
-  hidden position_33_0 1.5858115337459096e-5
-  hidden translation_34 0 -1.5858115337459096e-5 -0.0425
-  hidden position_34_0 1.0488991430147714e-12
-  hidden position_34_1 -5.228218922056655e-13
-  translation 0.49121143160409697 0.09542646236603447 0.19914696987377112
-  rotation -0.017427206666302035 -0.999777460401684 0.011887898913146714 -1.197582555430418
-  controller "pioneer3dx_gripper"
-  extensionSlot [
-    Camera {
-      translation 0.1 0 0
-      rotation 1 0 0 -1.5707996938995747
-      name "camera_right"
-    }
-    Camera {
-      translation 0 0.13999905720989644 -0.17000047139306765
-      rotation 0 0 1 0
-    }
-    Camera {
-      translation -0.1 0 0
-      rotation 1 0 0 -1.5707996938995747
-      name "camera_left"
-    }
-    Camera {
-      translation 0 0 0.1
-      rotation 1 0 0 -1.5707996938995747
-      name "camera_back"
-    }
-    Camera {
-      translation 0 0 -0.1
-      rotation 1 0 0 -1.5707996938995747
-      name "camera_front"
-    }
-    DEF GRIPPER_BASE Pioneer3Gripper {
-      translation 0 0.026 -0.135
-    }
-  ]
-}
 Ball {
-  hidden linearVelocity_0 -1.8323966135954484e-11 5.368870980304771e-7 -5.408724766079605e-12
-  hidden angularVelocity_0 -1.666564957465376e-10 -1.453539012562755e-22 5.646077144927717e-10
-  translation 4.3857047234976896e-10 0.08020680157314335 1.2947802501863035e-10
-  rotation -0.2831494551571098 -3.6399347743896716e-14 0.9590757978617914 -6.692278299419349e-7
+  translation -5.674839984294962e-9 0.08020683599996667 -1.6753928931375287e-9
+  rotation -0.2831495066571421 -7.137987706637058e-14 0.9590757826573544 -4.728353277743953e-7
   color 0.0784314 0.137255 1
 }
 DEF RED_TEE Solid {
@@ -183,8 +138,46 @@ DEF BLUE_TEE Solid {
   name "solid(1)"
   boundingObject USE PITCH_PLATE
 }
+DEF PIONEER_3DX Pioneer3dx {
+  translation -1.9067417995771345 0.09750000000000156 -0.5694
+  rotation 0 -1 0 -1.5707996938995747
+  controller "pioneer3dx_gripper"
+  extensionSlot [
+    Camera {
+      translation 0 0.1 -0.18
+    }
+    Camera {
+      translation 0 0 -0.1
+      rotation 1 0 0 -1.5707996938995747
+      name "camera_front"
+      fieldOfView 0.674
+    }
+    Camera {
+      translation -0.1 0 0
+      rotation 1 0 0 -1.5707996938995747
+      name "camera_left"
+      fieldOfView 0.674
+    }
+    Camera {
+      translation 0.1 0 0
+      rotation 1 0 0 -1.5707996938995747
+      name "camera_right"
+      fieldOfView 0.674
+    }
+    Camera {
+      translation 0 0 0.1
+      rotation 1 0 0 -1.5707996938995747
+      name "camera_back"
+      fieldOfView 0.674
+    }
+    DEF GRIPPER_BASE Pioneer3Gripper {
+      translation 0 0.026 -0.135
+    }
+  ]
+}
 Solid {
-  translation -2.572590737472442 0.08499877355500213 -0.8740393782766919
+  translation -3.472590737472433 0.13499998037881636 -0.5694
+  rotation 0.30629262903163085 0.7286454055331151 0.6125852580632135 1.1758369888417213e-17
   children [
     Shape {
       appearance Appearance {
@@ -193,13 +186,13 @@ Solid {
         }
       }
       geometry Box {
-        size 0.17 0.17 0.17
+        size 0.17 0.25 0.17
       }
     }
   ]
   name "box1"
   boundingObject Box {
-    size 0.17 0.17 0.17
+    size 0.17 0.25 0.17
   }
   physics Physics {
     density -1
@@ -207,76 +200,8 @@ Solid {
   }
 }
 Solid {
-  translation -2.752590737472446 0.08499877355500213 -0.8740393782766919
-  children [
-    Shape {
-      appearance Appearance {
-        material Material {
-          diffuseColor 0 1 0
-        }
-      }
-      geometry Box {
-        size 0.17 0.17 0.17
-      }
-    }
-  ]
-  name "box1(1)"
-  boundingObject Box {
-    size 0.17 0.17 0.17
-  }
-  physics Physics {
-    density -1
-    mass 0.0001
-  }
-}
-Solid {
-  translation -2.932590737472442 0.08499877355500213 -0.8740393782766919
-  children [
-    Shape {
-      appearance Appearance {
-        material Material {
-          diffuseColor 0 0 1
-        }
-      }
-      geometry Box {
-        size 0.17 0.17 0.17
-      }
-    }
-  ]
-  name "box1(2)"
-  boundingObject Box {
-    size 0.17 0.17 0.17
-  }
-  physics Physics {
-    density -1
-    mass 0.0001
-  }
-}
-Solid {
-  translation -3.112590737472438 0.08499877355500213 -0.8740393782766919
-  children [
-    Shape {
-      appearance Appearance {
-        material Material {
-          diffuseColor 0 1 0
-        }
-      }
-      geometry Box {
-        size 0.17 0.17 0.17
-      }
-    }
-  ]
-  name "box1(3)"
-  boundingObject Box {
-    size 0.17 0.17 0.17
-  }
-  physics Physics {
-    density -1
-    mass 0.0001
-  }
-}
-Solid {
-  translation -3.2925907374724344 0.08499877355500213 -0.8740393782766919
+  translation -3.292590737472436 0.13499998037881636 -0.5694
+  rotation 0.30629262903163085 0.7286454055331151 0.6125852580632135 1.1758369888417213e-17
   children [
     Shape {
       appearance Appearance {
@@ -285,36 +210,13 @@ Solid {
         }
       }
       geometry Box {
-        size 0.17 0.17 0.17
-      }
-    }
-  ]
-  name "box1(4)"
-  boundingObject Box {
-    size 0.17 0.17 0.17
-  }
-  physics Physics {
-    density -1
-    mass 0.0001
-  }
-}
-Solid {
-  translation -3.4725907374724305 0.08499877355500213 -0.8740393782766919
-  children [
-    Shape {
-      appearance Appearance {
-        material Material {
-          diffuseColor 1 0 0
-        }
-      }
-      geometry Box {
-        size 0.17 0.17 0.17
+        size 0.17 0.25 0.17
       }
     }
   ]
   name "box1(5)"
   boundingObject Box {
-    size 0.17 0.17 0.17
+    size 0.17 0.25 0.17
   }
   physics Physics {
     density -1
@@ -322,7 +224,32 @@ Solid {
   }
 }
 Solid {
-  translation -3.652590737472427 0.08499877355500213 -0.8740393782766919
+  translation -2.572590737472442 0.13499998037881636 -0.5694
+  rotation 0.31442247718866534 0.7479856571285698 -0.5845134408792364 1.1758369888417213e-17
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 1 0 0
+        }
+      }
+      geometry Box {
+        size 0.17 0.25 0.17
+      }
+    }
+  ]
+  name "box1(4)"
+  boundingObject Box {
+    size 0.17 0.25 0.17
+  }
+  physics Physics {
+    density -1
+    mass 0.0001
+  }
+}
+Solid {
+  translation -2.7525907374724383 0.13499998037881636 -0.5694
+  rotation 0.30629262903163085 0.7286454055331151 0.6125852580632135 1.1758369888417213e-17
   children [
     Shape {
       appearance Appearance {
@@ -331,13 +258,13 @@ Solid {
         }
       }
       geometry Box {
-        size 0.17 0.17 0.17
+        size 0.17 0.25 0.17
       }
     }
   ]
-  name "box1(6)"
+  name "box1(1)"
   boundingObject Box {
-    size 0.17 0.17 0.17
+    size 0.17 0.25 0.17
   }
   physics Physics {
     density -1
@@ -345,7 +272,8 @@ Solid {
   }
 }
 Solid {
-  translation -3.832590737472423 0.08499877355500213 -0.8740393782766919
+  translation -2.9325907374724345 0.13499998037881636 -0.5694
+  rotation 0.30629262903163085 0.7286454055331151 0.6125852580632135 1.1758369888417213e-17
   children [
     Shape {
       appearance Appearance {
@@ -354,16 +282,93 @@ Solid {
         }
       }
       geometry Box {
-        size 0.17 0.17 0.17
+        size 0.17 0.25 0.17
       }
     }
   ]
-  name "box1(7)"
+  name "box1(2)"
   boundingObject Box {
-    size 0.17 0.17 0.17
+    size 0.17 0.25 0.17
   }
   physics Physics {
     density -1
     mass 0.0001
   }
+}
+Solid {
+  translation -3.832590737472424 0.13499998037881636 -0.5694
+  rotation 0.30629262903163085 0.7286454055331151 0.6125852580632135 1.1758369888417213e-17
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0 0 1
+        }
+      }
+      geometry Box {
+        size 0.17 0.25 0.17
+      }
+    }
+  ]
+  name "box1(7)"
+  boundingObject Box {
+    size 0.17 0.25 0.17
+  }
+  physics Physics {
+    density -1
+    mass 0.0001
+  }
+}
+Solid {
+  translation -3.1125907374724306 0.13499998037881636 -0.5694
+  rotation 0.30629262903163085 0.7286454055331151 0.6125852580632135 1.1758369888417213e-17
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0 1 0
+        }
+      }
+      geometry Box {
+        size 0.17 0.25 0.17
+      }
+    }
+  ]
+  name "box1(3)"
+  boundingObject Box {
+    size 0.17 0.25 0.17
+  }
+  physics Physics {
+    density -1
+    mass 0.0001
+  }
+}
+Solid {
+  translation -3.652590737472426 0.13499998037881636 -0.5694
+  rotation 0.30629262903163085 0.7286454055331151 0.6125852580632135 1.1758369888417213e-17
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0 1 0
+        }
+      }
+      geometry Box {
+        size 0.17 0.25 0.17
+      }
+    }
+  ]
+  name "box1(6)"
+  boundingObject Box {
+    size 0.17 0.25 0.17
+  }
+  physics Physics {
+    density -1
+    mass 0.0001
+  }
+}
+PointLight {
+  attenuation 0.1 0 0
+  location 0 5 0
+  radius 10000
 }

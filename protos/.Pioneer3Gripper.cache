@@ -1,8 +1,8 @@
 Webots Proto Cache File version 1.3
-protoFileHash: ee3324770d15cf2db6d7f17b869b6c92
+protoFileHash: b6cc0c30f55450efffb24e57ab9b3a07
 containsDevices: 1
 baseType: Solid
 slotType: 
 parameters: translation,name
 tags: 
-info: Physics-based\smodel\sof\sthe\sPioneer\sgripper\s(Adept\sMobile\sRobotics)\n
+info: VRML_SIM\sR2018a\sutf8\nPhysics-based\smodel\sof\sthe\sPioneer\sgripper\s(Adept\sMobile\sRobotics)\n

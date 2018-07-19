@@ -5,19 +5,21 @@
 #include <webots/robot.h>
 #include <webots/differential_wheels.h>
 #include <webots/motor.h>
+#include <webots/distance_sensor.h>
 #include <webots/camera.h>
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 
 #define GRIPPER_MOTOR_MAX_SPEED 0.1
+#define MAIN_COLOR 1044480
 
 static WbDeviceTag wheel_motors[3];
 static WbDeviceTag gripper_motors[3];
-static WbDeviceTag camera, camera_left, camera_right, camera_front, camera_back;
+static WbDeviceTag ds, camera, camera_left, camera_right, camera_front, camera_back;
 static int time_step = 0;
 
-static char *colors[5] = {"red", "green", "blue", "purple", "none"};
+static char *colors[5] = {"red", "green", "blue", "yellow", "none"};
 
 static int is_going_back = 0;
 
@@ -37,33 +39,46 @@ static void initialize()
     wb_motor_set_position(wheel_motors[1], INFINITY);
     wb_motor_set_velocity(wheel_motors[0], 0.0);
     wb_motor_set_velocity(wheel_motors[1], 0.0);
+    wb_motor_set_position(gripper_motors[0], 0.05);
+    wb_motor_set_position(gripper_motors[1], 0.1);
+    wb_motor_set_position(gripper_motors[2], 0.1);
     // Camera
     camera = wb_robot_get_device("camera");
     camera_back = wb_robot_get_device("camera_back");
     camera_front = wb_robot_get_device("camera_front");
-    camera_left = wb_robot_get_device("camera_right");
-    camera_right = wb_robot_get_device("camera_left");
-    wb_camera_enable(camera, 2 * time_step);
-    wb_camera_enable(camera_back, 2 * time_step);
-    wb_camera_enable(camera_front, 2 * time_step); 
-    wb_camera_enable(camera_left, 2 * time_step);
-    wb_camera_enable(camera_right, 2 * time_step);
+    camera_right = wb_robot_get_device("camera_right");
+    camera_left = wb_robot_get_device("camera_left");
+    wb_camera_enable(camera, time_step * 2);
+    wb_camera_enable(camera_back, time_step* 2);
+    wb_camera_enable(camera_front, time_step); 
+    wb_camera_enable(camera_left, time_step);
+    wb_camera_enable(camera_right, time_step * 2);
+    // Distance sensor
+    ds = wb_robot_get_device("ds");
+    wb_distance_sensor_enable(ds, 2* time_step);
 }
 
-static int *getColor(WbDeviceTag device){
-  int tmp_colors[3];
-  tmp_colors[0] = tmp_colors[1] = tmp_colors[2] = 0;
+static char *getColor(WbDeviceTag device){
+  int red = 0, green = 0, blue = 0;
   int width = wb_camera_get_width(device);
   int height = wb_camera_get_height(device);
   const unsigned char *image = wb_camera_get_image(device);    
-  for (int i = width / 3; i < 2 * width / 3; i++) {
-      for (int u = height / 2; u < 3 * height / 4; u++) {
-        tmp_colors[0] += wb_camera_image_get_red(image, width, i, u);
-        tmp_colors[2] += wb_camera_image_get_blue(image, width, i, u);
-        tmp_colors[1] += wb_camera_image_get_green(image, width, i, u);
+  for (int i = 0; i < width; i++) {
+      for (int u = 0; u < height; u++) {
+        red += wb_camera_image_get_red(image, width, i, u);
+        blue += wb_camera_image_get_blue(image, width, i, u);
+        green += wb_camera_image_get_green(image, width, i, u);
       }
   }
-  return int{tmp_colors[0],tmp_colors[0],tmp_colors[0]};
+  printf("%d,%d,%d\n", red, green, blue);
+  if (red == MAIN_COLOR && green == 0 &&  blue == 0)
+    return colors[0];
+  else if (green == MAIN_COLOR)
+    return colors[1];
+  else if (blue == MAIN_COLOR)
+    return colors[2];
+  else
+    return colors[4];
 }
 
 void step(double seconds){
@@ -75,42 +90,99 @@ void step(double seconds){
   }
 }
 
-void lift(double position) {
-  wb_motor_set_velocity(gripper_motors[0], GRIPPER_MOTOR_MAX_SPEED);
-  wb_motor_set_position(gripper_motors[0], position);
+void forward() {
+  wb_motor_set_velocity(wheel_motors[0], 1.75);
+  wb_motor_set_velocity(wheel_motors[1], 1.75);
 }
 
-void moveFingers(double position) {
-  wb_motor_set_velocity(gripper_motors[1], GRIPPER_MOTOR_MAX_SPEED);
-  wb_motor_set_velocity(gripper_motors[2], GRIPPER_MOTOR_MAX_SPEED);
-  wb_motor_set_position(gripper_motors[1], position);
-  wb_motor_set_position(gripper_motors[2], position);
+void reverse() {
+  wb_motor_set_velocity(wheel_motors[0], -1.75);
+  wb_motor_set_velocity(wheel_motors[1], -1.75);
 }
 
-
-void moveForwards(double speed) {
-  wb_motor_set_velocity(wheel_motors[0], speed);
-  wb_motor_set_velocity(wheel_motors[1], speed);
+void turnLeft() {
+  wb_motor_set_velocity(wheel_motors[0], -2.0);
+  wb_motor_set_velocity(wheel_motors[1], 2.0);
 }
 
-void turn(double speed) {
-  wb_motor_set_velocity(wheel_motors[0], speed);
-  wb_motor_set_velocity(wheel_motors[1], -speed);
+void turnRight() {
+  wb_motor_set_velocity(wheel_motors[0], 2.0);
+  wb_motor_set_velocity(wheel_motors[1], -2.0);
 }
 
-void stop(double seconds) {
+void stop() {
   wb_motor_set_velocity(wheel_motors[0], 0.0);
   wb_motor_set_velocity(wheel_motors[1], 0.0);
-  step(seconds);
+  step(1.0);
 }
 
-int main()
-{
+void pick() {
+  wb_motor_set_velocity(gripper_motors[1], GRIPPER_MOTOR_MAX_SPEED);
+  wb_motor_set_velocity(gripper_motors[2], GRIPPER_MOTOR_MAX_SPEED);
+  wb_motor_set_position(gripper_motors[1], 0.07);
+  wb_motor_set_position(gripper_motors[2], 0.07);
+  step(1.0);
+  wb_motor_set_velocity(gripper_motors[0], GRIPPER_MOTOR_MAX_SPEED);
+  wb_motor_set_position(gripper_motors[0], 0.0);
+  step(1.0);
+  reverse();
+}
+
+void release() {
+  wb_motor_set_velocity(gripper_motors[0], GRIPPER_MOTOR_MAX_SPEED);
+  wb_motor_set_position(gripper_motors[0], 0.05);
+  step(1.0);
+  wb_motor_set_velocity(gripper_motors[1], GRIPPER_MOTOR_MAX_SPEED);
+  wb_motor_set_velocity(gripper_motors[2], GRIPPER_MOTOR_MAX_SPEED);
+  wb_motor_set_position(gripper_motors[1], 0.1);
+  wb_motor_set_position(gripper_motors[2], 0.1);
+  step(1.0);
+  reverse();
+}
+
+
+int main() {
+  char *tmp_color = colors[4];
   initialize();
+  step(2.0);
+  while (wb_robot_step(time_step) != 1) {
+  getColor(camera_right);
+    if (tmp_color == colors[4]) {
+      forward();
+      if (wb_distance_sensor_get_value(ds) < 400) {
+      stop();
+      pick();
+      tmp_color = getColor(camera);
+      }
+    } else {
+      if (getColor(camera_left) == tmp_color) {
+        turnLeft();
+      } else if (getColor(camera_right) == tmp_color) {
+      stop();
+        turnRight();
+      }
+    }
+  }
+  
+  pick();
+  step(3.0);
+  release();
+  step(3.0);
+  
+
+  
   /*
-  lift(0.05);
-  moveFingers(0.06);
+
+  moveForwards(1.75);
+  step(2.0);
+  stop(0.5);
+  
+  turn(2.0);
+  step(2.720001);
+  turn(0);
+  step(1);
   moveForwards(1.25);
+  step(5.5);
   step(2.0);
   stop(0.5);
   moveFingers(0.01);

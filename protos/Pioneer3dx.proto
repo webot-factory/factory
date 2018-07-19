@@ -2734,83 +2734,10 @@ PROTO Pioneer3dx [
           }
         }
       }
-      DEF SO_0 Pioneer3DistanceSensor {
-        translation -0.140208 0.114 -0.0610447
-        rotation 0 1 0 3.14159
-        name "so0"
-      }
-      DEF SO_1 Pioneer3DistanceSensor {
-        translation -0.122255 0.114 -0.110288
-        rotation 0 1 0 2.44346
-        name "so1"
-      }
-      DEF SO_10 Pioneer3DistanceSensor {
-        translation 0.07738 0.114 0.239181
-        rotation 0 -1 0 1.0472
-        name "so10"
-      }
-      DEF SO_11 Pioneer3DistanceSensor {
-        translation 0.0258761 0.114 0.257812
-        rotation 0 -1 0 1.39626
-        name "so11"
-      }
-      DEF SO_12 Pioneer3DistanceSensor {
-        translation -0.0289131 0.114 0.257812
-        rotation 0 -1 0 1.74533
-        name "so12"
-      }
-      DEF SO_13 Pioneer3DistanceSensor {
-        translation -0.0803968 0.114 0.239181
-        rotation 0 -1 0 2.0944
-        name "so13"
-      }
-      DEF SO_14 Pioneer3DistanceSensor {
-        translation -0.122403 0.114 0.204065
-        rotation 0 -1 0 2.44346
-        name "so14"
-      }
-      DEF SO_15 Pioneer3DistanceSensor {
-        translation -0.140311 0.114 0.154945
-        rotation 0 -1 0 3.14159
-        name "so15"
-      }
-      DEF SO_2 Pioneer3DistanceSensor {
-        translation -0.0801434 0.114 -0.145492
-        rotation 0 1 0 2.0944
-        name "so2"
-      }
-      DEF SO_3 Pioneer3DistanceSensor {
-        translation -0.0285304 0.114 -0.16417
-        rotation 0 1 0 1.74533
-        name "so3"
-      }
-      DEF SO_4 Pioneer3DistanceSensor {
-        translation 0.026383 0.114 -0.16417
-        rotation 0 1 0 1.39626
-        name "so4"
-      }
-      DEF SO_5 Pioneer3DistanceSensor {
-        translation 0.0780296 0.114 -0.145492
-        rotation 0 1 0 1.0472
-        name "so5"
-      }
-      DEF SO_6 Pioneer3DistanceSensor {
-        translation 0.120142 0.114 -0.110288
-        rotation 0 1 0 0.698132
-        name "so6"
-      }
-      DEF SO_7 Pioneer3DistanceSensor {
-        translation 0.138094 0.114 -0.0610446
-        name "so7"
-      }
-      DEF SO_8 Pioneer3DistanceSensor {
-        translation 0.137294 0.114 0.154945
-        name "so8"
-      }
-      DEF SO_9 Pioneer3DistanceSensor {
-        translation 0.119387 0.114 0.204065
-        rotation 0 -1 0 0.698132
-        name "so9"
+      DEF DS DistanceSensor {
+        translation -0.0010737 0.114 -0.2
+        rotation 0 1 0 1.570795
+        name "ds"
       }
       DEF UPPER_YELLOW_LED LED {
         translation -0.130135 0.105728 0.0530564

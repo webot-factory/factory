@@ -1,4 +1,5 @@
 #VRML_SIM R2018a utf8
+#VRML_SIM R2018a utf8
 # Physics-based model of the Pioneer gripper (Adept Mobile Robotics)
 
 PROTO Pioneer3Gripper [
