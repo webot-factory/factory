@@ -9,8 +9,8 @@ WorldInfo {
 }
 Viewpoint {
   fieldOfView 0.660595
-  orientation -0.8230491305311893 0.4980544070448083 0.2730053778867695 0.8254898541991589
-  position 5.0303785079311325 11.184399065892308 10.380576899262941
+  orientation 0.3264423106321134 -0.8488900358189136 -0.4157176023655126 4.494057152148436
+  position 4.418224764289902 7.295581434531883 -2.1264518604643246
 }
 TexturedBackground {
 }
@@ -822,4 +822,28 @@ DEF CCTV Supervisor {
       ]
     }
   ]
+}
+DEF Monitoring Supervisor {
+  children [
+    TouchSensor {
+      translation -1.2400000000000009 0 -2.3399999999999963
+      children [
+        Solid {
+          children [
+            Shape {
+              geometry Box {
+                size 0.1 0.01 0.1
+              }
+            }
+          ]
+        }
+      ]
+      name "touch-01"
+      boundingObject Box {
+        size 0.1 0.01 0.1
+      }
+    }
+  ]
+  name "monitoring"
+  controller "touchsensor"
 }
