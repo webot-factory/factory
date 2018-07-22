@@ -158,20 +158,6 @@ DEF PIONEER_3DX Pioneer3dx {
   rotation 0 -1 0 -1.5707996938995747
   controller "pioneer3dx_gripper"
   extensionSlot [
-    Solid {
-      children [
-        Shape {
-          appearance Appearance {
-            material Material {
-              diffuseColor 0 1 1
-            }
-          }
-          geometry Box {
-            size 0.001 1 0.001
-          }
-        }
-      ]
-    }
     Camera {
       translation 0 0.1 -0.18
     }
