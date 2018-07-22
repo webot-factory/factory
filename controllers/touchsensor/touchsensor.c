@@ -3,17 +3,39 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#define SENSOR_COUNT 3
 
-static WbDeviceTag touchsensor_a;
+static WbDeviceTag touchsensors[SENSOR_COUNT];
+
 
 int main() {
   wb_robot_init();
-  touchsensor_a = wb_robot_get_device("touch-01");
-  wb_touch_sensor_enable(touchsensor_a, 1);
   int time_step = wb_robot_get_basic_time_step();
+  int tmp_values[SENSOR_COUNT];
+  
+  for (int i = 0; i < SENSOR_COUNT; i++) {
+      char sensor_name[8];
+      sensor_name[0] = *"t";
+      sensor_name[1] = *"o";
+      sensor_name[2] = *"u";
+      sensor_name[3] = *"c";
+      sensor_name[4] =* "h";
+      sensor_name[5] = *"-";
+      sensor_name[6] = *"0";
+      sensor_name[7] = (i+1) + '0';
+      touchsensors[i] = wb_robot_get_device(sensor_name);
+      wb_touch_sensor_enable(touchsensors[i], 1);
+      tmp_values[i] = 0;
+  }
+  
+  
   while (wb_robot_step(time_step) != 1) {
-    double value1 = wb_touch_sensor_get_value(touchsensor_a);
-	if(value1 != 1.000000) printf("Robot at Depot 1");
+    for (int i = 0; i < SENSOR_COUNT; i++) {
+      int value = wb_touch_sensor_get_value(touchsensors[i]);
+      if(value != tmp_values[i] && value == 1) printf("Robot at Depot %d\n",i+1);
+      tmp_values[i] = value;
+    }
   }
   return 0;
+ 
 }

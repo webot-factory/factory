@@ -9,8 +9,8 @@ WorldInfo {
 }
 Viewpoint {
   fieldOfView 0.660595
-  orientation 0.3264423106321134 -0.8488900358189136 -0.4157176023655126 4.494057152148436
-  position 4.418224764289902 7.295581434531883 -2.1264518604643246
+  orientation 0.1070653213328977 0.9906104456537842 0.08501742132936416 4.315018524012317
+  position -1.2642751134857344 1.3583014512257636 0.8880092196940716
 }
 TexturedBackground {
 }
@@ -562,7 +562,7 @@ DEF Boxes Transform {
   ]
 }
 DEF Exit-02 Solid {
-  translation -2.9600000000000004 0 2.0100000000000002
+  translation -3.0899999999999976 0 2.0100000000000002
   children [
     Solid {
       translation -1.0300000000000005 0 -0.23
@@ -634,7 +634,7 @@ DEF Exit-02 Solid {
   name "solid(5)"
 }
 DEF Exit-03 Solid {
-  translation 2.299999994389983 0 3.180000003835891
+  translation 2.2999999936228015 0 3.340000003835889
   rotation 0 1 0 1.5707963220000003
   children [
     Solid {
@@ -707,7 +707,7 @@ DEF Exit-03 Solid {
   name "solid(6)"
 }
 DEF Exit-01 Solid {
-  translation -1.459999946728688 0 -3.320000050442339
+  translation -1.4599999454340655 0 -3.4100000504423376
   rotation 0 0.9999999999999999 0 4.712388966000001
   children [
     Solid {
@@ -812,22 +812,26 @@ DEF CCTV Supervisor {
 }
 DEF Monitoring Supervisor {
   children [
-    TouchSensor {
-      translation -1.2400000000000009 0 -2.3399999999999963
-      children [
-        Solid {
-          children [
-            Shape {
-              geometry Box {
-                size 0.1 0.01 0.1
-              }
-            }
-          ]
-        }
-      ]
+    DEF sensor-depot1 TouchSensor {
+      translation -1.2400000000000009 0.01 -2.5999999999999996
       name "touch-01"
       boundingObject Box {
-        size 0.1 0.01 0.1
+        size 0.6 0.01 0.2
+      }
+    }
+    DEF sensor-depot3 TouchSensor {
+      translation 2.0799999999999983 0.01 2.0900000000000056
+      name "touch-03"
+      boundingObject Box {
+        size 0.6 0.01 0.2
+      }
+    }
+    DEF sensor-depot2 TouchSensor {
+      translation -1.8199999999953511 0.01 1.800002761025835
+      rotation 0 1 0 1.5707996938995747
+      name "touch-02"
+      boundingObject Box {
+        size 0.6 0.01 0.2
       }
     }
   ]
