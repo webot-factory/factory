@@ -33,6 +33,7 @@ Door {
   rotation 0 -1 0 4.712389070359173
   name "door(1)"
   size 0.5 0.8 0.2
+  frameHeight 0.8
   doorTextureUrl [
     "textures/metal.jpg"
   ]
