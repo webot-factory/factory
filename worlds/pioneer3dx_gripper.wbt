@@ -9,8 +9,8 @@ WorldInfo {
 }
 Viewpoint {
   fieldOfView 0.660595
-  orientation 0.1070653213328977 0.9906104456537842 0.08501742132936416 4.315018524012317
-  position -1.2642751134857344 1.3583014512257636 0.8880092196940716
+  orientation 0.879008425931505 -0.3821424572196951 -0.28515141509645575 5.214260754846148
+  position -1.8521361975606059 6.797534978320137 3.403661260786611
 }
 TexturedBackground {
 }
@@ -192,55 +192,7 @@ DEF PIONEER_3DX Pioneer3dx {
   ]
 }
 Solid {
-  translation -3.472590737472433 0.13499998037881636 -0.5694
-  rotation 0.30629262903163085 0.7286454055331151 0.6125852580632135 1.1758369888417213e-17
-  children [
-    Shape {
-      appearance Appearance {
-        material Material {
-          diffuseColor 1 0 0
-        }
-      }
-      geometry Box {
-        size 0.17 0.25 0.17
-      }
-    }
-  ]
-  name "box1"
-  boundingObject Box {
-    size 0.17 0.25 0.17
-  }
-  physics Physics {
-    density -1
-    mass 0.0001
-  }
-}
-Solid {
-  translation -3.292590737472436 0.13499998037881636 -0.5694
-  rotation 0.30629262903163085 0.7286454055331151 0.6125852580632135 1.1758369888417213e-17
-  children [
-    Shape {
-      appearance Appearance {
-        material Material {
-          diffuseColor 1 0 0
-        }
-      }
-      geometry Box {
-        size 0.17 0.25 0.17
-      }
-    }
-  ]
-  name "box1(5)"
-  boundingObject Box {
-    size 0.17 0.25 0.17
-  }
-  physics Physics {
-    density -1
-    mass 0.0001
-  }
-}
-Solid {
-  translation -2.572590737472442 0.13499998037881636 -0.5694
+  translation -2.8025907374724404 0.13499998037881636 -0.5694
   rotation 0.31442247718866534 0.7479856571285698 -0.5845134408792364 1.1758369888417213e-17
   children [
     Shape {
@@ -264,7 +216,7 @@ Solid {
   }
 }
 Solid {
-  translation -2.7525907374724383 0.13499998037881636 -0.5694
+  translation -3.2725907374724317 0.13499998037881636 -0.5694
   rotation 0.30629262903163085 0.7286454055331151 0.6125852580632135 1.1758369888417213e-17
   children [
     Shape {
@@ -288,7 +240,7 @@ Solid {
   }
 }
 Solid {
-  translation -2.9325907374724345 0.13499998037881636 -0.5694
+  translation -3.7425907374724283 0.13499998037881636 -0.5694
   rotation 0.30629262903163085 0.7286454055331151 0.6125852580632135 1.1758369888417213e-17
   children [
     Shape {
@@ -303,78 +255,6 @@ Solid {
     }
   ]
   name "box1(2)"
-  boundingObject Box {
-    size 0.17 0.25 0.17
-  }
-  physics Physics {
-    density -1
-    mass 0.0001
-  }
-}
-Solid {
-  translation -3.832590737472424 0.13499998037881636 -0.5694
-  rotation 0.30629262903163085 0.7286454055331151 0.6125852580632135 1.1758369888417213e-17
-  children [
-    Shape {
-      appearance Appearance {
-        material Material {
-          diffuseColor 0 0 1
-        }
-      }
-      geometry Box {
-        size 0.17 0.25 0.17
-      }
-    }
-  ]
-  name "box1(7)"
-  boundingObject Box {
-    size 0.17 0.25 0.17
-  }
-  physics Physics {
-    density -1
-    mass 0.0001
-  }
-}
-Solid {
-  translation -3.1125907374724306 0.13499998037881636 -0.5694
-  rotation 0.30629262903163085 0.7286454055331151 0.6125852580632135 1.1758369888417213e-17
-  children [
-    Shape {
-      appearance Appearance {
-        material Material {
-          diffuseColor 0 1 0
-        }
-      }
-      geometry Box {
-        size 0.17 0.25 0.17
-      }
-    }
-  ]
-  name "box1(3)"
-  boundingObject Box {
-    size 0.17 0.25 0.17
-  }
-  physics Physics {
-    density -1
-    mass 0.0001
-  }
-}
-Solid {
-  translation -3.652590737472426 0.13499998037881636 -0.5694
-  rotation 0.30629262903163085 0.7286454055331151 0.6125852580632135 1.1758369888417213e-17
-  children [
-    Shape {
-      appearance Appearance {
-        material Material {
-          diffuseColor 0 1 0
-        }
-      }
-      geometry Box {
-        size 0.17 0.25 0.17
-      }
-    }
-  ]
-  name "box1(6)"
   boundingObject Box {
     size 0.17 0.25 0.17
   }
@@ -813,25 +693,25 @@ DEF CCTV Supervisor {
 DEF Monitoring Supervisor {
   children [
     DEF sensor-depot1 TouchSensor {
-      translation -1.2400000000000009 0.01 -2.5999999999999996
+      translation -1.2400000000000009 0.0001 -2.5999999999999996
       name "touch-01"
       boundingObject Box {
-        size 0.6 0.01 0.2
+        size 0.6 0.0001 0.2
       }
     }
     DEF sensor-depot3 TouchSensor {
-      translation 2.0799999999999983 0.01 2.0900000000000056
+      translation 2.0799999999999996 0.0001 2.0900000000000056
       name "touch-03"
       boundingObject Box {
-        size 0.6 0.01 0.2
+        size 0.6 0.0001 0.2
       }
     }
     DEF sensor-depot2 TouchSensor {
-      translation -1.8199999999953511 0.01 1.800002761025835
+      translation -1.8199999999953511 0.0001 1.800002761025835
       rotation 0 1 0 1.5707996938995747
       name "touch-02"
       boundingObject Box {
-        size 0.6 0.01 0.2
+        size 0.6 0.0001 0.2
       }
     }
   ]

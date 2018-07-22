@@ -15,13 +15,7 @@ int main() {
   
   for (int i = 0; i < SENSOR_COUNT; i++) {
       char sensor_name[8];
-      sensor_name[0] = *"t";
-      sensor_name[1] = *"o";
-      sensor_name[2] = *"u";
-      sensor_name[3] = *"c";
-      sensor_name[4] =* "h";
-      sensor_name[5] = *"-";
-      sensor_name[6] = *"0";
+      *sensor_name = *"touch-0";
       sensor_name[7] = (i+1) + '0';
       touchsensors[i] = wb_robot_get_device(sensor_name);
       wb_touch_sensor_enable(touchsensors[i], 1);
